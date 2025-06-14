@@ -31,24 +31,26 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
+      // Initialize image and cloudinaryId as empty strings
+      // These will be used if a file is uploaded
       let image = '';
       let cloudinaryId = '';
 
+      // If a file is uploaded, upload it to Cloudinary
       if(req.file){
         const result = await cloudinary.uploader.upload(req.file.path);
-        image = result.secure_url;
+        image = result.secure_url; 
         cloudinaryId = result.public_id;
       }
-      // Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path);
-
+      
+      // Create a new post in the database with or without an image
       await Post.create({
-        title: req.body.title,
-        image: image,
-        cloudinaryId: cloudinaryId,
-        caption: req.body.caption,
-        likes: 0,
-        user: req.user.id,
+        title: req.body.title, //title from form input
+        image: image,          //Cloudinary url (if any)
+        cloudinaryId: cloudinaryId, //cloudinaryID (if any)
+        caption: req.body.caption, //caption from form input
+        likes: 0,                  //Default likes to 0
+        user: req.user.id,         
       });
       console.log("Post has been added!");
       res.redirect("/profile");
