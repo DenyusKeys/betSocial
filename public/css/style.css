@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+ body{
+     font-family: 'Roboto', sans-serif;
+     background-color: #161A1D;
+} 
+.wrapper {
+  max-width: 1200px;  /* limits the container width */
+  margin: 0 auto;     /* centers the container horizontally */
+  padding: 0 20px;    /* adds some padding on left and right */
+}
+@media (max-width: 1024px) {
+  .wrapper {
+    max-width: 700px; /* narrower on tablets */
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    max-width: 100%; /* full width on small screens */
+    padding: 0 10px;
+  }
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+    color: #DEE4EA
+}
+
+a:hover{
+    text-decoration:underline
+}
+
+ .bet-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  /* center cards horizontally */
+  list-style: none;          /* remove bullets */
+  padding: 0;                /* remove default padding */
+  margin: 0;                 /* remove default margin */
+}
+ h1{
+     text-align: center;
+     color: #4181ee;
+}
+.wrapper {
+  width: 100%;
+  max-width: 1200px; /* max width on large screens */
+  margin: 0 auto;
+  padding: 0 20px; /* side padding on all screens */
+  box-sizing: border-box;
+}
+.card {
+  flex: 0 1 calc(33.333% - 40px); /* 4 cards per row accounting for margins */
+  border-radius: 25px;
+  min-height: 250px;
+  background: #38414A;
+  padding: 30px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #FFF;
+  margin: 20px;
+  box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px,
+              rgb(0 0 0 / 30%) 0px 18px 36px -18px;
+}
+ .card-sport{
+     margin-top: 0;
+     font-size: 14px;
+     font-weight: 600;
+     letter-spacing: 1.2px;
+}
+ .card-bet{
+     margin-top: 0;
+     font-size: 24px;
+     font-weight: 600;
+     letter-spacing: 1.2px;
+}
+ .card-content{
+     font-size: 14px;
+     letter-spacing: 0.5px;
+     line-height: 1.5;
+}
+ .card-btn{
+     all: unset;
+     display: block;
+     margin-left: auto;
+     border: 2px solid #FFF;
+     padding: 10px 15px;
+     border-radius: 25px;
+     font-size: 10px;
+     font-weight: 600;
+     transition: all 0.5s;
+     cursor: pointer;
+     letter-spacing: 1.2px;
+}
+ .card-btn:hover{
+    color:#02b875;
+    background: #FFF;
+}
+ .card:nth-child(2) .card-btn:hover{
+    color:#4181ee;
+    background: #FFF;
+}
+ .card:last-child .card-btn:hover{
+    color:#673ab7;
+     background: #FFF;
+}
+
+.bet-author{
+    color: #BAF3DB
+}
