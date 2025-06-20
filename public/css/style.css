@@ -2,6 +2,7 @@
  body{
      font-family: 'Roboto', sans-serif;
      background-color: #161A1D;
+     color: white;
 } 
 .wrapper {
   max-width: 1200px;  /* limits the container width */

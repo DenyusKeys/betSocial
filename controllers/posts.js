@@ -12,7 +12,7 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().populate('user').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
+      const posts = await Post.find().populate('createdBy').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
       res.render("feedCurrent.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
