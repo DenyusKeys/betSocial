@@ -10,14 +10,24 @@
           <div class="mt-5">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+              <label for="sport">Choose a sport:</label>
+              <select name="sport" id="sport">
+                <option value="Baseball">Baseball</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Football">Football</option>
+                <option value="Hockey">Hockey</option>
+                <option value="Other">Other</option>
+              </select>
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <label for="prediction" class="form-label">Prediction</label>
+                  <input type="text" class="form-control" id="prediction" name="prediction">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="reasoning" class="form-label">Reasoning</label>
+                <textarea class="form-control" id="reasoning" name="reasoning"></textarea>
               </div>
+              <input type="checkbox" id="tracked" name="tracked" value="true">
+              <label for="tracked"> Track this bet?</label><br>
               <div class="mb-3">
                 <label for="imgUpload" class="form-label">Image</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">

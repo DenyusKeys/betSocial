@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
   sport: {
     type: String,
     required: true,
@@ -41,6 +37,14 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  tracked: {
+    type: Boolean,
+    default: false
+  },
+  deleted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 //Collection gets named to it's plural form "posts"

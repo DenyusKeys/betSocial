@@ -12,7 +12,7 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().populate('createdBy').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
+      const posts = await Post.find().populate('createdBy', 'userName').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
       res.render("feedCurrent.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
@@ -21,7 +21,7 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       //Grabs post, populate the user key which references to the user schema. In the model, you can see the ref:"user"
-      const post = await Post.findById(req.params.id).populate('user'); //req.params.id grabs the id from the url (:id)
+      const post = await Post.findById(req.params.id).populate('createdBy', 'userName'); //req.params.id grabs the id from the url (:id)
       const comments = await Comment.find({post: req.params.id}).populate('createdBy').sort({ createdAt: "desc" }).lean(); 
       //Populate uses the key you want to connect to another document. *In comments, createdBy has ref: "user"*
       res.render("post.ejs", { post: post, user: req.user, comments: comments, }); //req.user is from the session. 
@@ -43,14 +43,18 @@ module.exports = {
         cloudinaryId = result.public_id;
       }
       
+      const tracked = req.body.tracked === 'true';
+
       // Create a new post in the database with or without an image
       await Post.create({
-        title: req.body.title, //title from form input
+        sport: req.body.sport,
+        prediction: req.body.prediction,
+        reasoning: req.body.reasoning, 
         image: image,          //Cloudinary url (if any)
         cloudinaryId: cloudinaryId, //cloudinaryID (if any)
-        caption: req.body.caption, //caption from form input
         likes: 0,                  //Default likes to 0
-        user: req.user.id,         
+        createdBy: req.user.id,
+        tracked: req.body.tracked         
       });
       console.log("Post has been added!");
       res.redirect("/profile");

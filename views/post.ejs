@@ -3,7 +3,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <h2><%= post.title %></h2>
-      <h3><%= post.user.userName %></h3>
+      <h3><%= post.createdBy.userName %></h3>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
         <form
@@ -15,7 +15,7 @@
         </form>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
         <!-- Compare ids directly.  When using populate() method, it turns (post.user) into an object which != a string (user.id) (post.user == user.id) -->
-        <% if (post.user._id.toString() === user._id.toString()) { %>
+        <% if (post.createdBy._id.toString() === user._id.toString()) { %>
         <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
           method="POST"
