@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const CommentSchema = new mongoose.Schema({
-  comment: {
+  commentText: {
     type: String,
     required: true,
   },
@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  post: {
+  postID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post",
   },
@@ -17,10 +17,14 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  createdBy: {
+  commentMadeBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  }
+  },
+  likedBy: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+  }],
 });
 
 //Collection gets named to it's plural form "posts"

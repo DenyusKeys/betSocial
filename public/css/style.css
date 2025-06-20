@@ -98,11 +98,11 @@ a:hover{
     background: #FFF;
 }
  .card:nth-child(2) .card-btn:hover{
-    color:#4181ee;
+    color:#02b875;
     background: #FFF;
 }
  .card:last-child .card-btn:hover{
-    color:#673ab7;
+    color:#02b875;
      background: #FFF;
 }
 

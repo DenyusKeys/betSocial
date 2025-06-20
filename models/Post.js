@@ -5,6 +5,18 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sport: {
+    type: String,
+    required: true,
+  },
+  prediction: {
+    type: String,
+    required: true,
+  },
+  reasoning: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
     require: false,
@@ -13,18 +25,18 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
-  caption: {
-    type: String,
-    required: true,
-  },
   likes: {
     type: Number,
     required: true,
   },
-  user: {
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  likedBy: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
   createdAt: {
     type: Date,
     default: Date.now,
