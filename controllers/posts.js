@@ -12,7 +12,8 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().populate('createdBy', 'userName').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
+      //Populate will cross reference createdBy to the user schema along with other properties specified.
+      const posts = await Post.find().populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
       res.render("feedCurrent.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
