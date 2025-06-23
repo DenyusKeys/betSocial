@@ -57,7 +57,7 @@ a:hover{
   min-height: 250px;
   background: #38414A;
   padding: 30px;
-  border-radius: 3px;
+  
   box-sizing: border-box;
   color: #FFF;
   margin: 20px;
@@ -81,7 +81,7 @@ a:hover{
      letter-spacing: 0.5px;
      line-height: 1.5;
      display: -webkit-box;
-    -webkit-line-clamp: 3;      /* Number of lines to show */
+    -webkit-line-clamp: 1;      /* Number of lines to show */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

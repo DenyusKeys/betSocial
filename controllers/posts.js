@@ -14,6 +14,16 @@ module.exports = {
     try {
       //Populate will cross reference createdBy to the user schema along with other properties specified.
       const posts = await Post.find().populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
+      posts.forEach(post => {
+        post.formattedDate = new Date(post.createdAt).toLocaleString("en-US", {
+        weekday: "short",   // e.g., "Mon"
+        month: "long",      // e.g., "June"
+        day: "numeric",     // e.g., "23"
+        hour: "numeric",    // e.g., "2"
+        minute: "2-digit",  // e.g., "23"
+        hour12: true        // 12-hour format with AM/PM
+      });
+});
       res.render("feedCurrent.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
