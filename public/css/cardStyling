@@ -24,3 +24,4 @@ CURRENTLY FINISHED WITH SIDEBAR AND FEED LAYOUT\
 **CURRENTL
 - Working on comment functionality and display on postTest.ejs
 Styling and content are set for the individual posts.  Working on getting comment functionality working.  Comments not saving to DB the way I have the model so check comments controller
+****Add date to filtered search ejs****
