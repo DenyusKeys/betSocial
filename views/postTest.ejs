@@ -1,0 +1,67 @@
+<%- include('partials/header') -%>
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="prediction-card">
+      
+      <!-- Header: Sport & Date -->
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="sport-name"><%= post.sport %></h4>
+        <h5 class="prediction-date"><%= post.formattedDate %></h5>
+      </div>
+
+      <!-- Main Content -->
+      <div class="card-body">
+        <h3 class="prediction-pick"><%= post.prediction %></h3>
+        <p class="prediction-analysis">Analysis: <%= post.reasoning %></p>
+        <% if (post.image) { %>
+          <img class="img-fluid rounded mb-3" src="<%= post.image %>" alt="Prediction Image" />
+        <% } %>
+      </div>
+
+      <!-- Footer: Author Info -->
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div>
+          <h4 class="author-name mb-0"><%= post.createdBy.userName %></h4>
+          <h5 class="author-record mb-0">Record: <%= post.createdBy.wins %> - <%= post.createdBy.losses %></h5>
+        </div>
+
+        <!-- Likes + Buttons -->
+        <div class="d-flex align-items-center gap-3">
+          <h5 class="card-likes mb-0">Likes: <%= post.likes %></h5>
+          <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
+            <button class="btn btn-outline-danger fa fa-heart" type="submit"></button>
+          </form>
+          
+          <% if (post.createdBy._id.toString() === user._id.toString()) { %>
+            <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST">
+              <button class="btn btn-outline-secondary fa fa-trash" type="submit"></button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comment Section -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <h2>Add a comment</h2>
+      <form action="/comment/createComment/<%=post._id%>" method="POST">
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comment</label>
+          <input type="text" class="form-control" id="comment" name="comment">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <ul>
+      <% for(let i=0; i<comments.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <%= comments[i].commentText%>
+            <h5><%= comments[i].createdBy.userName%></h5>
+          </li>
+        <% } %>
+    </ul>
+  </div>
+</div>

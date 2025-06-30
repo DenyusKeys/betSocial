@@ -1,11 +1,16 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <h3><%= post.createdBy.userName %></h3>
+    <div class="card-post">
+            <h4 class="card-sport-post"><%= post.sport %> </h4>
+            <h5 class="card-sport-post"><%= post.formattedDate %></h5>
+            <h3 class="card-bet-post"><%= post.prediction %></h3>
+            <p class="card-content-post">Analysis: <%= post.reasoning %></p>
+            <h4 class="bet-author-post"><%= post.createdBy.userName %></h4>
+            <h5 class="bet-author-post">Record: <%= post.createdBy.wins %> - <%= post.createdBy.losses %></h5>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
+        <h3 class="card-likes">Likes: <%= post.likes %></h3>
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
@@ -13,7 +18,7 @@
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
+        
         <!-- Compare ids directly.  When using populate() method, it turns (post.user) into an object which != a string (user.id) (post.user == user.id) -->
         <% if (post.createdBy._id.toString() === user._id.toString()) { %>
         <form
@@ -25,9 +30,6 @@
         </form>
         <%}%>
       </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
     </div>
     <div class="mt-5">
             <h2>Add a comment</h2>

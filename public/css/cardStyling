@@ -19,4 +19,8 @@ router.get("/feed/:sport", ensureAuth, postsController.getSportFeed);
 - Getting it to look nice.
     - Wrap sidebar and wrapper html together since they are going to sit side by side.
     
-CURRENTLY FINISHED WITH SIDEBAR AND FEED LAYOUT
+CURRENTLY FINISHED WITH SIDEBAR AND FEED LAYOUT\
+
+**CURRENTL
+- Working on comment functionality and display on postTest.ejs
+Styling and content are set for the individual posts.  Working on getting comment functionality working.  Comments not saving to DB the way I have the model so check comments controller

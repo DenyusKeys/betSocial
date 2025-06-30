@@ -47,10 +47,10 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       //Grabs post, populate the user key which references to the user schema. In the model, you can see the ref:"user"
-      const post = await Post.findById(req.params.id).populate('createdBy', 'userName'); //req.params.id grabs the id from the url (:id)
+      const post = await Post.findById(req.params.id).populate('createdBy', 'userName wins losses'); //req.params.id grabs the id from the url (:id)
       const comments = await Comment.find({post: req.params.id}).populate('createdBy').sort({ createdAt: "desc" }).lean(); 
       //Populate uses the key you want to connect to another document. *In comments, createdBy has ref: "user"*
-      res.render("post.ejs", { post: post, user: req.user, comments: comments, }); //req.user is from the session. 
+      res.render("postTest.ejs", { post: post, user: req.user, comments: comments, }); //req.user is from the session. 
     } catch (err) {
       console.log(err);
     }
