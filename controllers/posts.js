@@ -23,8 +23,23 @@ module.exports = {
         minute: "2-digit",  // e.g., "23"
         hour12: true        // 12-hour format with AM/PM
       });
-});
+      });
       res.render("feedCurrent.ejs", { posts: posts });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getSportFeed: async (req, res) => {
+    try {
+      //Grab sport name from the url /feed/:sport
+      const sport = req.params.sport;
+      //Format the sport to match DB "Baseball". Capitalize first letter and concantenate the rest of the sport.
+      const formattedSport = sport.charAt(0).toUpperCase() + sport.slice(1).toLowerCase();
+
+      //Query DB for posts matching the sport.  
+      const posts = await Post.find({ sport: formattedSport}).populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean();
+      //Render feed and pass the filtered posts and sport name
+      res.render("feedCurrent.ejs", { posts, sport: formattedSport}); 
     } catch (err) {
       console.log(err);
     }

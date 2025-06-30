@@ -3,11 +3,30 @@
      font-family: 'Roboto', sans-serif;
      background-color: #161A1D;
      color: white;
+}
+.feed-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding:0px 240px 20px 5px;
 } 
+
 .wrapper {
+  flex: 1;
   max-width: 1200px;  /* limits the container width */
   margin: 0 auto;     /* centers the container horizontally */
   padding: 0 20px;    /* adds some padding on left and right */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
 }
 @media (max-width: 1024px) {
   .wrapper {
@@ -81,7 +100,7 @@ a:hover{
      letter-spacing: 0.5px;
      line-height: 1.5;
      display: -webkit-box;
-    -webkit-line-clamp: 1;      /* Number of lines to show */
+    -webkit-line-clamp: 2;      /* Number of lines to show */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

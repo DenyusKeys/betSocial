@@ -1,2 +1,20 @@
 Things to do:
--Update model and form to match the bet cards.
+-Working on sidebar partial
+
+
+
+
+Adding sidebar steps
+- Define the route.  
+router.get("/feed/:sport", ensureAuth, postsController.getSportFeed);
+((the : allows dynamic filling of the paramater from url))
+
+- Create controller function
+    - Get sport from url (req.params.sport)
+    - Format sport to match DB
+    - Query DB for formattedSport
+    - Render only the requested sport posts.
+    - WORKING LETS GOOOOOOO
+
+- Getting it to look nice.
+    - Wrap sidebar and wrapper html together since they are going to sit side by side.
