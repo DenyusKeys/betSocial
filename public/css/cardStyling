@@ -18,3 +18,5 @@ router.get("/feed/:sport", ensureAuth, postsController.getSportFeed);
 
 - Getting it to look nice.
     - Wrap sidebar and wrapper html together since they are going to sit side by side.
+    
+CURRENTLY FINISHED WITH SIDEBAR AND FEED LAYOUT
