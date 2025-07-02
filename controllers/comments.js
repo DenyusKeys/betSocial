@@ -6,8 +6,8 @@ module.exports = {
       await Comment.create({ //Use comment model
         commentText: req.body.comment,
         likes: 0,
-        post: req.params.id,//Pull id from url
-        createdBy: req.user.id
+        postID: req.params.id,//Pull id from url
+        commentMadeBy: req.user.id,
       });
       console.log("Comment has been added!");
       res.redirect("/post/"+req.params.id); //refresh back to post

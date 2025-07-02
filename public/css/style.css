@@ -198,3 +198,50 @@ a:hover{
   margin: 0;
   color: #222;
 }
+
+/* Comment Section */
+.comment-list {
+  list-style: none;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 850px;
+}
+
+.comment-card {
+  display: block;
+  background-color: #f0f2f5;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 10px 16px;
+  margin: 12px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  /* Auto-size based on content */
+  max-width: 100%;
+  width: fit-content;
+  white-space: normal;
+}
+
+.comment-label {
+  padding-top: 10px;
+}
+
+.comment-text {
+  font-size: 15px;
+  color: #050505;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.comment-footer {
+  text-align: right;
+}
+
+.comment-author {
+  font-size: 13px;
+  color: #65676b;
+  font-weight: 500;
+  margin: 0;
+}

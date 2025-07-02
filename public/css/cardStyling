@@ -21,7 +21,12 @@ router.get("/feed/:sport", ensureAuth, postsController.getSportFeed);
     
 CURRENTLY FINISHED WITH SIDEBAR AND FEED LAYOUT\
 
-**CURRENTL
 - Working on comment functionality and display on postTest.ejs
 Styling and content are set for the individual posts.  Working on getting comment functionality working.  Comments not saving to DB the way I have the model so check comments controller
-****Add date to filtered search ejs****
+-Comments model complete and saving to db.  
+COMMENT SECTION WORKING AS INTENDED
+- Comments weren't showing because I wasn't referencing the postID only the post.
+---- const comments = await Comment.find({post: req.params.id}) would return no results because it is looking at the wrong field.  The field was called postID.
+
+
+UP NEXT: PROFILE PAGE and utility function for date formatting

@@ -58,9 +58,32 @@ module.exports = {
     try {
       //Grabs post, populate the user key which references to the user schema. In the model, you can see the ref:"user"
       const post = await Post.findById(req.params.id).populate('createdBy', 'userName wins losses'); //req.params.id grabs the id from the url (:id)
-      const comments = await Comment.find({post: req.params.id}).populate('createdBy').sort({ createdAt: "desc" }).lean(); 
+      // Format the date
+      post.formattedDate = new Date(post.createdAt).toLocaleString("en-US", {
+        weekday: "short",   // e.g., "Mon"
+        month: "long",      // e.g., "June"
+        day: "numeric",     // e.g., "23"
+        hour: "numeric",    // e.g., "2"
+        minute: "2-digit",  // e.g., "23"
+        hour12: true        // 12-hour format with AM/PM
+      });
+      
+      const comments = await Comment.find({postID: req.params.id})
+          .populate('commentMadeBy', 'userName').sort({ createdAt: "desc" }).lean(); 
+      //Use formattedDate in EJS
+      comments.forEach(comment => {
+        comment.formattedDate = new Date(comment.createdAt).toLocaleString("en-US", {
+        weekday: "short",   // e.g., "Mon"
+        month: "long",      // e.g., "June"
+        day: "numeric",     // e.g., "23"
+        hour: "numeric",    // e.g., "2"
+        minute: "2-digit",  // e.g., "23"
+        hour12: true        // 12-hour format with AM/PM
+        });
+      });
+
       //Populate uses the key you want to connect to another document. *In comments, createdBy has ref: "user"*
-      res.render("postTest.ejs", { post: post, user: req.user, comments: comments, }); //req.user is from the session. 
+      res.render("postTest.ejs", { post, user: req.user, comments }); //req.user is from the session. 
     } catch (err) {
       console.log(err);
     }

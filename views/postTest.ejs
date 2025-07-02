@@ -53,15 +53,20 @@
           <input type="text" class="form-control" id="comment" name="comment">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <h2 class="comment-label">Comments</h2>
       </form>
+      
     </div>
-    <ul>
-      <% for(let i=0; i<comments.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <%= comments[i].commentText%>
-            <h5><%= comments[i].createdBy.userName%></h5>
-          </li>
-        <% } %>
+    <ul class="comment-list">
+      
+      <% comments.forEach(comment => { %>
+        <li class="comment-card">
+          <p class="comment-text"><%= comment.commentText %></p>
+          <div class="comment-footer">
+            <h5 class="comment-author"><%= comment.commentMadeBy.userName %> <%= comment.formattedDate %></h5>
+          </div>
+        </li>
+      <% }) %>
     </ul>
   </div>
 </div>
