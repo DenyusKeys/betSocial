@@ -35,9 +35,19 @@ module.exports = {
       const sport = req.params.sport;
       //Format the sport to match DB "Baseball". Capitalize first letter and concantenate the rest of the sport.
       const formattedSport = sport.charAt(0).toUpperCase() + sport.slice(1).toLowerCase();
-
       //Query DB for posts matching the sport.  
       const posts = await Post.find({ sport: formattedSport}).populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean();
+      //Format the date from DB
+      posts.forEach(post => {
+        post.formattedDate = new Date(post.createdAt).toLocaleString("en-US", {
+        weekday: "short",   // e.g., "Mon"
+        month: "long",      // e.g., "June"
+        day: "numeric",     // e.g., "23"
+        hour: "numeric",    // e.g., "2"
+        minute: "2-digit",  // e.g., "23"
+        hour12: true        // 12-hour format with AM/PM
+      });
+      });
       //Render feed and pass the filtered posts and sport name
       res.render("feedCurrent.ejs", { posts, sport: formattedSport}); 
     } catch (err) {
