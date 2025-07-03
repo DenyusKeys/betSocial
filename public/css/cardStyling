@@ -29,4 +29,10 @@ COMMENT SECTION WORKING AS INTENDED
 ---- const comments = await Comment.find({post: req.params.id}) would return no results because it is looking at the wrong field.  The field was called postID.
 
 
-UP NEXT: PROFILE PAGE and utility function for date formatting
+----PROFILE PAGE and utility function for date formatting
+- Profile page setup to display the users bets.
+
+
+UP NEXT: Utility function for date formatting.  Record tracking
+-Record tracking: Allow an admin to have a thumb up and down when viewing bets for easy tracking.  Look into the deletion icon function and remix it?
+- Figure out how to view a user's bets via a profile page of the user.

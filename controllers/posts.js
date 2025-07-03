@@ -4,8 +4,9 @@ const Comment = require("../models/Comment")
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      //Make sure to query the correct field in the DB.  createdBy is where the user id is held.
+      const posts = await Post.find({ createdBy: req.user.id }).populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean();
+      res.render("profile.ejs", { posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
