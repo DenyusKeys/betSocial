@@ -41,5 +41,8 @@ old..UP NEXT: Utility function for date formatting.  Record tracking
 
 COMPLETED: Viewing another user's profile.  Must compare the id with .toString for the comparison to work.  Has logic to redirect to profile or viewUserProfile page depending on the user chosen.
 UP NEXT: 
-On profile page, when clicking on a post, it gets an error.  Fix that.
+On profile page, when clicking on a post, it gets an error.  Fix that. ----- FIXED
+
+UP NEXT::
 ADD FUNCTIONALITY FOR RECORD KEEPING
+- Check likePost function and ejs.  Try to adjust post -> user instead to target user win/losses.  Add logic to check if a administrator is logged in to display those buttons.  
