@@ -40,4 +40,6 @@ old..UP NEXT: Utility function for date formatting.  Record tracking
 
 
 COMPLETED: Viewing another user's profile.  Must compare the id with .toString for the comparison to work.  Has logic to redirect to profile or viewUserProfile page depending on the user chosen.
-UP NEXT: ADD FUNCTIONALITY FOR RECORD KEEPING
+UP NEXT: 
+On profile page, when clicking on a post, it gets an error.  Fix that.
+ADD FUNCTIONALITY FOR RECORD KEEPING

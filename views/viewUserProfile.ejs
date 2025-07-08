@@ -13,7 +13,7 @@
         <ul class="row list-unstyled">
         <% for(var i=0; i<posts.length; i++) {%>
             <li class="profile-card">
-            <a href="/posts/<%= posts[i]._id%>">
+            <a href="/post/<%= posts[i]._id%>">
                 <h4 class="profile-card-sport"><%= posts[i].sport %> </h4>
                 <h5 class="profile-card-sport"><%= posts[i].formattedDate %></h5>
                 <h3 class="profile-card-bet"><%= posts[i].prediction %></h3>
