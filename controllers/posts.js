@@ -25,7 +25,7 @@ getUserProfile: async (req, res) => {
       return res.status(404).send("User not found");
     }
 
-    // Fetch user's posts
+    // Fetch user's posts.  createdBy matches userId
     const posts = await Post.find({ createdBy: userId }).populate('createdBy').sort({ createdAt: "desc" }).lean();
 
     //Check if user is viewing another user or themself.
