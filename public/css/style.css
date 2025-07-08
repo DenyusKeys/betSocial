@@ -221,6 +221,12 @@ a:hover{
   color: #222;
 }
 
+.feed-button {
+  display: flex;
+  justify-content: center;
+  
+} 
+
 /* Comment Section */
 .comment-list {
   list-style: none;

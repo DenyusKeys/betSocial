@@ -5,8 +5,10 @@ const User = require("../models/User")
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      //Make sure to query the correct field in the DB.  createdBy is where the user id is held.
-      const posts = await Post.find({ createdBy: req.user.id }).populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean();
+      //Fetch all Post where the createdBy field matches the logged-in user's id(req.user.id).
+      //.populate fills the fields of each post with the full user object.  Can now use post.createdBy.userName in ejs
+      const posts = await Post.find({ createdBy: req.user.id }).populate('createdBy').sort({ createdAt: "desc" }).lean();
+      //Passes the posts variable to ejs.  req.user is current logged in user provided by Passport.js
       res.render("profile.ejs", { posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -98,8 +100,7 @@ getUserProfile: async (req, res) => {
         hour12: true        // 12-hour format with AM/PM
       });
       
-      const comments = await Comment.find({postID: req.params.id})
-          .populate('commentMadeBy', 'userName').sort({ createdAt: "desc" }).lean(); 
+      const comments = await Comment.find({postID: req.params.id}).populate('commentMadeBy', 'userName').sort({ createdAt: "desc" }).lean(); 
       //Use formattedDate in EJS
       comments.forEach(comment => {
         comment.formattedDate = new Date(comment.createdAt).toLocaleString("en-US", {
