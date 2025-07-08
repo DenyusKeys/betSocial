@@ -11,6 +11,32 @@ module.exports = {
       console.log(err);
     }
   },
+  // GET: Another user's public profile by ID
+getUserProfile: async (req, res) => {
+  try {
+    const userId = req.params.Id;
+
+    // Fetch the user info from DB
+    const userInfo = await User.findById(userId).lean();
+    if (!userInfo) {
+      return res.status(404).send("User not found");
+    }
+
+    // Fetch that user's posts
+    const post = await Post.find({ createdBy: userId })
+      .populate('createdBy', 'userName wins losses')
+      .sort({ createdAt: "desc" })
+      .lean();
+
+    res.render("viewUserProfile.ejs", {
+      post,
+      user: userInfo
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading user profile");
+  }
+},
   getFeed: async (req, res) => {
     try {
       //Populate will cross reference createdBy to the user schema along with other properties specified.

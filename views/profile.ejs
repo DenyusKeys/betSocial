@@ -16,6 +16,7 @@
                 <option value="Basketball">Basketball</option>
                 <option value="Football">Football</option>
                 <option value="Hockey">Hockey</option>
+                <option value="Hockey">Tennis</option>
                 <option value="Other">Other</option>
               </select>
               <div class="mb-3">
@@ -37,6 +38,9 @@
           </div>
       </div>
       <div class="col-6">
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>
         <ul class="row list-unstyled">
         <% for(var i=0; i<posts.length; i++) {%>
             <li class="profile-card">
@@ -52,9 +56,7 @@
             </li>
         <% } %>
         </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
+  
       </div>  
     </div>
   </div>

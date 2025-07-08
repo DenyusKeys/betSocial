@@ -1,0 +1,33 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-6">
+          <div>
+              <p><strong>User Name</strong>: <%= post.createdBy %></p>
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<post.length; i++) {%>
+            <li class="profile-card">
+            <a href="/post/<%= post[i]._id%>">
+                <h4 class="profile-card-sport"><%= post[i].sport %> </h4>
+                <h5 class="profile-card-sport"><%= post[i].formattedDate %></h5>
+                <h3 class="profile-card-bet"><%= post[i].prediction %></h3>
+                <p class="profile-card-content">Analysis: <%= post[i].reasoning %></p>
+                <h4 class="profile-bet-author"><%= post[i].createdBy.userName %></h4>
+                <h5 class="profile-bet-author">Record: <%= post[i].createdBy.wins %> - <%= post[i].createdBy.losses %></h5>
+                <button class="card-btn">READ MORE</button>
+            </a>
+            </li>
+        <% } %>
+        </ul>
+  
+      </div>  
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>

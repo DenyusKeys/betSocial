@@ -12,9 +12,11 @@
             <h5 class="card-sport"><%= posts[i].formattedDate %></h5>
             <h3 class="card-bet"><%= posts[i].prediction %></h3>
             <p class="card-content">Analysis: <%= posts[i].reasoning %></p>
+            <button class="card-btn">READ MORE</button>
+          </a>
+          <a href="/profile/<%= posts[i].createdBy._id %>">
             <h4 class="bet-author"><%= posts[i].createdBy.userName %></h4>
             <h5 class="bet-author">Record: <%= posts[i].createdBy.wins %> - <%= posts[i].createdBy.losses %></h5>
-            <button class="card-btn">READ MORE</button>
           </a>
         </li>
       <% } %>

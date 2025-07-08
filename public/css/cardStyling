@@ -36,4 +36,4 @@ COMMENT SECTION WORKING AS INTENDED
 UP NEXT: Utility function for date formatting.  Record tracking
 - Add pagination to profile page to only pull up the most recent bets to not overload the system when the database gets larger over time.
 -Record tracking: Allow an admin to have a thumb up and down when viewing bets for easy tracking.  Look into the deletion icon function and remix it?
-- Figure out how to view a user's bets via a profile page of the user.
+- Figure out how to view a user's bets via a profile page of the user. Maybe copy  profile page, remove form, and populate using createdBy again?
