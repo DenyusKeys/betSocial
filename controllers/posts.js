@@ -114,7 +114,7 @@ getUserProfile: async (req, res) => {
       });
 
       //Populate uses the key you want to connect to another document. *In comments, createdBy has ref: "user"*
-      res.render("postTest.ejs", { post, user: req.user, comments }); //req.user is from the session. 
+      res.render("viewPost.ejs", { post, user: req.user, comments }); //req.user is from the session. 
     } catch (err) {
       console.log(err);
     }
