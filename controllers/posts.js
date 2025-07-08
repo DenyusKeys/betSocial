@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment")
+const User = require("../models/User")
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -14,25 +15,27 @@ module.exports = {
   // GET: Another user's public profile by ID
 getUserProfile: async (req, res) => {
   try {
-    const userId = req.params.Id;
-
+    const userId = req.params.userId;
     // Fetch the user info from DB
     const userInfo = await User.findById(userId).lean();
+    
     if (!userInfo) {
       return res.status(404).send("User not found");
     }
 
-    // Fetch that user's posts
-    const post = await Post.find({ createdBy: userId })
-      .populate('createdBy', 'userName wins losses')
-      .sort({ createdAt: "desc" })
-      .lean();
+    // Fetch user's posts
+    const posts = await Post.find({ createdBy: userId }).populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean();
 
-    res.render("viewUserProfile.ejs", {
-      post,
-      user: userInfo
-    });
-  } catch (err) {
+    //Check if user is viewing another user or themself.
+    if (req.user._id.toString() === userId) {
+      // If same user, render the logged-in user's profile page
+      return res.render("profile.ejs", { posts, user: userInfo });
+    }
+    
+    //Render the user's profile
+    res.render("viewUserProfile.ejs", {posts, user: userInfo});
+  } 
+  catch (err) {
     console.error(err);
     res.status(500).send("Error loading user profile");
   }

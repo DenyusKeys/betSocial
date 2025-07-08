@@ -3,7 +3,7 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <p><strong>User Name</strong>: <%= post.createdBy %></p>
+              <p><strong>User Name</strong>: <%= user.userName %></p>
           </div>
       </div>
       <div class="col-6">
@@ -11,15 +11,15 @@
           <a class="btn btn-primary" href="/feed">Return to Feed</a>
         </div>
         <ul class="row list-unstyled">
-        <% for(var i=0; i<post.length; i++) {%>
+        <% for(var i=0; i<posts.length; i++) {%>
             <li class="profile-card">
-            <a href="/post/<%= post[i]._id%>">
-                <h4 class="profile-card-sport"><%= post[i].sport %> </h4>
-                <h5 class="profile-card-sport"><%= post[i].formattedDate %></h5>
-                <h3 class="profile-card-bet"><%= post[i].prediction %></h3>
-                <p class="profile-card-content">Analysis: <%= post[i].reasoning %></p>
-                <h4 class="profile-bet-author"><%= post[i].createdBy.userName %></h4>
-                <h5 class="profile-bet-author">Record: <%= post[i].createdBy.wins %> - <%= post[i].createdBy.losses %></h5>
+            <a href="/posts/<%= posts[i]._id%>">
+                <h4 class="profile-card-sport"><%= posts[i].sport %> </h4>
+                <h5 class="profile-card-sport"><%= posts[i].formattedDate %></h5>
+                <h3 class="profile-card-bet"><%= posts[i].prediction %></h3>
+                <p class="profile-card-content">Analysis: <%= posts[i].reasoning %></p>
+                <h4 class="profile-bet-author"><%= posts[i].createdBy.userName %></h4>
+                <h5 class="profile-bet-author">Record: <%= posts[i].createdBy.wins %> - <%= posts[i].createdBy.losses %></h5>
                 <button class="card-btn">READ MORE</button>
             </a>
             </li>
