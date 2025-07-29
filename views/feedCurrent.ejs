@@ -18,6 +18,15 @@
             <h4 class="bet-author"><%= posts[i].createdBy.userName %></h4>
             <h5 class="bet-author">Record: <%= posts[i].createdBy.wins %> - <%= posts[i].createdBy.losses %></h5>
           </a>
+          <% if (user.userName === 'AroundTheWeb') { %>
+            <!-- Show admin-only buttons -->
+            <form action="/post/addWin/<%= posts[i]._id %>?_method=PUT" method="POST">
+              <button class="btn mb-2 mr-2 btn-danger" type="submit">Winner</button>
+            </form>
+            <form action="/post/addLoss/<%= posts[i]._id %>?_method=PUT" method="POST">
+              <button class="btn mb-2 mr-2 btn-success" type="submit">Loser</button>
+            </form>  
+          <% } %>
         </li>
       <% } %>
     </ul>

@@ -43,7 +43,7 @@ COMPLETED: Viewing another user's profile.  Must compare the id with .toString f
 UP NEXT: 
 On profile page, when clicking on a post, it gets an error.  Fix that. ----- FIXED
 
-UP NEXT::
+COMPLETED::
 ADD FUNCTIONALITY FOR RECORD KEEPING
 - Check likePost function and ejs.  Try to adjust post -> user instead to target user win/losses.  Add logic to check if a administrator is logged in to display those buttons.  
 
@@ -52,4 +52,10 @@ Added record tracking functionality with "addWin and addLoss" functions.
 How it works - grab the postId from the (req.params.id).
              - populate the post with 'createdBy', 'userName' to reference the user that created the post
              - Find the user by id and update: (User.findByIdAndUpdate(post.createdBy, { $inc:{ losses: 1 } });)
-             - Updates the wins/losses in DB.
+             - Updates the wins/losses in DB and redirects back to the same post.
+
+UP NEXT::
+Adjust color of each prediction to display if it was a win or a loss
+ -Add win/loss property to schema
+ - Update addWin controller to  update the "win" property.
+ -Add if statement in ejs?

@@ -56,7 +56,7 @@ getUserProfile: async (req, res) => {
         hour12: true        // 12-hour format with AM/PM
       });
       });
-      res.render("feedCurrent.ejs", { posts: posts });
+      res.render("feedCurrent.ejs", { posts: posts, user:req.user });
     } catch (err) {
       console.log(err);
     }
@@ -167,33 +167,39 @@ getUserProfile: async (req, res) => {
       console.log(err);
     }
   },
-  //Find the post by its ID → get its createdBy field → find the user → increment wins by 1
+  //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
   addWin: async (req, res) => {
   try {
     //Find the post by it's ID.  Populate to reference the userName.
     const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
 
+    //Update win boolean to true
+    const winPost = await Post.findByIdAndUpdate(req.params.id, { win: true});
+
     //Update the 'wins' of the createdBy user
     await User.findByIdAndUpdate(post.createdBy, { $inc:{ wins: 1 } });
 
     console.log(`Win added to User: ${post.createdBy.userName}`)
-    res.redirect(`/post/${req.params.id}`);
+    res.redirect(`/feed`);
    } catch (err) {
      console.log(err);
    }
   },
-    //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
+  //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
   addLoss: async (req, res) => {
   try {
     //Find the post by it's ID.  Populate to reference the userName
     const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
+
+    //Update win boolean to false
+    const winPost = await Post.findByIdAndUpdate(req.params.id, { win: false});
 
     //Update the 'wins' of the createdBy user.  post.createdBy grabs the id of the user
     await User.findByIdAndUpdate(post.createdBy, { $inc:{ losses: 1 } });
 
     //log the action for assurance
     console.log(`Loss added to User: ${post.createdBy.userName}`)
-    res.redirect(`/post/${req.params.id}`);
+    res.redirect(`/feed`);
    } catch (err) {
      console.log(err);
    }

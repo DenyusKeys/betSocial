@@ -44,6 +44,10 @@ const PostSchema = new mongoose.Schema({
   deleted: {
     type: Boolean,
     default: false
+  },
+  win: {
+    type: Boolean,
+    default: null
   }
 });
 
