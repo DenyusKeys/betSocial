@@ -11,6 +11,10 @@ router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.put("/likePost/:id", postsController.likePost); //Uses the form to make request with method-override to PUT
 
+router.put("/addWin/:id", postsController.addWin);
+
+router.put("/addLoss/:id", postsController.addLoss);
+
 router.delete("/deletePost/:id", postsController.deletePost);
 
 module.exports = router;

@@ -46,3 +46,10 @@ On profile page, when clicking on a post, it gets an error.  Fix that. ----- FIX
 UP NEXT::
 ADD FUNCTIONALITY FOR RECORD KEEPING
 - Check likePost function and ejs.  Try to adjust post -> user instead to target user win/losses.  Add logic to check if a administrator is logged in to display those buttons.  
+
+COMPLETED::
+Added record tracking functionality with "addWin and addLoss" functions.
+How it works - grab the postId from the (req.params.id).
+             - populate the post with 'createdBy', 'userName' to reference the user that created the post
+             - Find the user by id and update: (User.findByIdAndUpdate(post.createdBy, { $inc:{ losses: 1 } });)
+             - Updates the wins/losses in DB.

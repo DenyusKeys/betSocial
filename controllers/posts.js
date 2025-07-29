@@ -160,11 +160,43 @@ getUserProfile: async (req, res) => {
           $inc: { likes: 1 }, //inc comes with mongoDB (increment)
         }
       );
+      console.log(req.params.id)
       console.log("Likes +1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
+  },
+  //Find the post by its ID → get its createdBy field → find the user → increment wins by 1
+  addWin: async (req, res) => {
+  try {
+    //Find the post by it's ID.  Populate to reference the userName.
+    const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
+
+    //Update the 'wins' of the createdBy user
+    await User.findByIdAndUpdate(post.createdBy, { $inc:{ wins: 1 } });
+
+    console.log(`Win added to User: ${post.createdBy.userName}`)
+    res.redirect(`/post/${req.params.id}`);
+   } catch (err) {
+     console.log(err);
+   }
+  },
+    //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
+  addLoss: async (req, res) => {
+  try {
+    //Find the post by it's ID.  Populate to reference the userName
+    const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
+
+    //Update the 'wins' of the createdBy user.  post.createdBy grabs the id of the user
+    await User.findByIdAndUpdate(post.createdBy, { $inc:{ losses: 1 } });
+
+    //log the action for assurance
+    console.log(`Loss added to User: ${post.createdBy.userName}`)
+    res.redirect(`/post/${req.params.id}`);
+   } catch (err) {
+     console.log(err);
+   }
   },
   deletePost: async (req, res) => {
     try {
