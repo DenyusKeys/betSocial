@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const Comment = require("../models/Comment")
 const User = require("../models/User")
 module.exports = {
-  getProfile: async (req, res) => {
+getProfile: async (req, res) => {
     try {
       //Fetch all Post where the createdBy field matches the logged-in user's id(req.user.id).
       //.populate fills the fields of each post with the full user object.  Can now use post.createdBy.userName in ejs
@@ -17,6 +17,7 @@ module.exports = {
   // GET: Another user's public profile by ID
 getUserProfile: async (req, res) => {
   try {
+    //Grab userId from the url
     const userId = req.params.userId;
     // Fetch the user info from DB
     const userInfo = await User.findById(userId).lean();
