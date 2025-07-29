@@ -10,7 +10,12 @@
           <a href="/post/<%= posts[i]._id%>">
             <h4 class="card-sport"><%= posts[i].sport %> </h4>
             <h5 class="card-sport"><%= posts[i].formattedDate %></h5>
-            <h3 class="card-bet"><%= posts[i].prediction %></h3>
+            <!-- Display win or loss by color based on DB win status(true/false) -->
+            <h3 class="card-bet 
+                <%= posts[i].win === true ? 'bg-success text-white' : '' %> 
+                <%= posts[i].win === false ? 'bg-danger text-white' : '' %>">
+                <%= posts[i].prediction %>
+            </h3>
             <p class="card-content">Analysis: <%= posts[i].reasoning %></p>
             <button class="card-btn">READ MORE</button>
           </a>
@@ -21,10 +26,10 @@
           <% if (user.userName === 'AroundTheWeb') { %>
             <!-- Show admin-only buttons -->
             <form action="/post/addWin/<%= posts[i]._id %>?_method=PUT" method="POST">
-              <button class="btn mb-2 mr-2 btn-danger" type="submit">Winner</button>
+              <button class="btn mb-2 mr-2 btn-success" type="submit">Winner</button>
             </form>
             <form action="/post/addLoss/<%= posts[i]._id %>?_method=PUT" method="POST">
-              <button class="btn mb-2 mr-2 btn-success" type="submit">Loser</button>
+              <button class="btn mb-2 mr-2 btn-danger" type="submit">Loser</button>
             </form>  
           <% } %>
         </li>

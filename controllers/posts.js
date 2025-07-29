@@ -144,7 +144,8 @@ getUserProfile: async (req, res) => {
         cloudinaryId: cloudinaryId, //cloudinaryID (if any)
         likes: 0,                  //Default likes to 0
         createdBy: req.user.id,
-        tracked: req.body.tracked         
+        tracked: req.body.tracked,
+        win: null         
       });
       console.log("Post has been added!");
       res.redirect("/profile");

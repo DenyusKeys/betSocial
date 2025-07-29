@@ -1,9 +1,6 @@
 Things to do:
 -Working on sidebar partial
 
-
-
-
 Adding sidebar steps
 - Define the route.  
 router.get("/feed/:sport", ensureAuth, postsController.getSportFeed);
@@ -54,8 +51,20 @@ How it works - grab the postId from the (req.params.id).
              - Find the user by id and update: (User.findByIdAndUpdate(post.createdBy, { $inc:{ losses: 1 } });)
              - Updates the wins/losses in DB and redirects back to the same post.
 
-UP NEXT::
+COMPLETED::
 Adjust color of each prediction to display if it was a win or a loss
- -Add win/loss property to schema
+ - Add win/loss property to schema and createPost function
  - Update addWin controller to  update the "win" property.
- -Add if statement in ejs?
+ - Add if statement in ejs?
+ COMPLETED ^^^^
+ - Displays admin controls throughout application if admin account is logged in.
+ - Updates the win/loss record in the DB
+ - Updates the color of the prediction header based on the win/loss boolean.
+
+UP NEXT::
+Work on finding an API to stream the daily games available?
+- Could display the games based on the sport
+Find an API or list of teams for each sport to hardcode into the bet creation form?
+
+(Current admin: AroundTheWeb 2j
+ Test user: OfficialTestUser 2j )
