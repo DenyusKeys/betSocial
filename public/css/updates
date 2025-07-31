@@ -68,3 +68,15 @@ Find an API or list of teams for each sport to hardcode into the bet creation fo
 
 (Current admin: AroundTheWeb 2j
  Test user: OfficialTestUser 2j )
+
+COMPLETED::
+Team dropdowns completed.
+- Created a dictionary of teams by category.  Only did major USA teams for Hockey, NHL, MLB, and NFL currently
+- Created a showTeams() function in public.js
+- Function will grab the value from the sport dropdown and populate teams based on that.
+
+UP NEXT::
+- Make sure the team dropdowns are added to the createdBet**** before saving to DB.
+- Work on finding an API to stream the daily games available?
+- Could display the games based on the sport
+Find an API or list of teams for each sport to hardcode into the bet creation form?
