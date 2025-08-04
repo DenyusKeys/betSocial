@@ -28,19 +28,6 @@
   top: 20px;
   height: fit-content;
 }
-@media (max-width: 1024px) {
-  .wrapper {
-    max-width: 700px; /* narrower on tablets */
-    padding: 0 15px;
-  }
-}
-
-@media (max-width: 600px) {
-  .wrapper {
-    max-width: 100%; /* full width on small screens */
-    padding: 0 10px;
-  }
-}
 
 a:link, a:visited, a:active{
     text-decoration: none;
@@ -63,13 +50,7 @@ a:hover{
      text-align: center;
      color: #4181ee;
 }
-.wrapper {
-  width: 100%;
-  max-width: 1200px; /* max width on large screens */
-  margin: 0 auto;
-  padding: 0 20px; /* side padding on all screens */
-  box-sizing: border-box;
-}
+
 .profile-card{
   flex: 0 1 calc(50% - 40px); /* Two cards per row with margin accounted */
   border-radius: 25px;
@@ -129,15 +110,20 @@ a:hover{
  .card-btn{
      all: unset;
      display: block;
-     margin-left: auto;
+     width: 70%;
      border: 2px solid #FFF;
      padding: 10px 15px;
      border-radius: 25px;
-     font-size: 10px;
+     font-size: 15px;
      font-weight: 600;
      transition: all 0.5s;
      cursor: pointer;
      letter-spacing: 1.2px;
+       margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
  .card-btn:hover{
     color:#02b875;
@@ -273,3 +259,97 @@ a:hover{
   font-weight: 500;
   margin: 0;
 }
+
+@media (max-width: 1400px) {
+  .bet-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .card, .profile-card {
+    flex: 0 1 calc(50% - 20px); /* Two cards per row with spacing */
+    max-width: calc(50% - 20px);
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .card {
+    width: 50%;
+  }
+
+  .card-sport {
+  font-size: clamp(12px, 1.8vw, 14px);
+}
+
+.card-bet {
+  font-size: clamp(18px, 3vw, 24px);
+}
+
+.card-content {
+  font-size: clamp(12px, 1.6vw, 14px);
+  line-height: 1.5;
+}
+
+.card-btn {
+  font-size: clamp(10px, 1.4vw, 12px);
+  padding: clamp(6px, 1.2vw, 10px) clamp(10px, 2vw, 15px);
+  width: 70%;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bet-author {
+  font-size: clamp(20px, 1.5vw, 13px);
+}
+}
+
+@media (max-width: 1179px) {
+  .bet-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card, .profile-card {
+    flex: 0 1 100%;
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 20px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card-sport {
+  font-size: clamp(12px, 1.8vw, 14px);
+}
+
+.card-bet {
+  font-size: clamp(18px, 3vw, 24px);
+}
+
+.card-content {
+  font-size: clamp(12px, 1.6vw, 14px);
+  line-height: 1.5;
+}
+
+.card-btn {
+  font-size: clamp(10px, 1.4vw, 12px);
+  padding: clamp(6px, 1.2vw, 10px) clamp(10px, 2vw, 15px);
+}
+
+.bet-author {
+  font-size: clamp(20px, 1.5vw, 13px);
+}
+}
+
+
+

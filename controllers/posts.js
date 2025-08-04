@@ -43,7 +43,7 @@ getUserProfile: async (req, res) => {
     res.status(500).send("Error loading user profile");
   }
 },
-  getFeed: async (req, res) => {
+getFeed: async (req, res) => {
     try {
       //Populate will cross reference createdBy to the user schema along with other properties specified.
       const posts = await Post.find().populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
@@ -62,7 +62,7 @@ getUserProfile: async (req, res) => {
       console.log(err);
     }
   },
-  getSportFeed: async (req, res) => {
+getSportFeed: async (req, res) => {
     try {
       //Grab sport name from the url /feed/:sport
       const sport = req.params.sport;
@@ -82,12 +82,12 @@ getUserProfile: async (req, res) => {
       });
       });
       //Render feed and pass the filtered posts and sport name
-      res.render("feedCurrent.ejs", { posts, sport: formattedSport}); 
+      res.render("feedCurrent.ejs", { posts, sport: formattedSport, user:req.user}); 
     } catch (err) {
       console.log(err);
     }
   },
-  getPost: async (req, res) => {
+getPost: async (req, res) => {
     try {
       //Grabs post, populate the user key which references to the user schema. In the model, you can see the ref:"user"
       const post = await Post.findById(req.params.id).populate('createdBy', 'userName wins losses'); //req.params.id grabs the id from the url (:id)
@@ -120,7 +120,7 @@ getUserProfile: async (req, res) => {
       console.log(err);
     }
   },
-  createPost: async (req, res) => {
+createPost: async (req, res) => {
     try {
       // Initialize image and cloudinaryId as empty strings
       // These will be used if a file is uploaded
@@ -154,7 +154,7 @@ getUserProfile: async (req, res) => {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
@@ -169,8 +169,8 @@ getUserProfile: async (req, res) => {
       console.log(err);
     }
   },
-  //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
-  addWin: async (req, res) => {
+//Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
+addWin: async (req, res) => {
   try {
     //Find the post by it's ID.  Populate to reference the userName.
     const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
@@ -187,8 +187,8 @@ getUserProfile: async (req, res) => {
      console.log(err);
    }
   },
-  //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
-  addLoss: async (req, res) => {
+//Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
+addLoss: async (req, res) => {
   try {
     //Find the post by it's ID.  Populate to reference the userName
     const post = await Post.findById(req.params.id).populate('createdBy', 'userName').lean();
@@ -206,7 +206,7 @@ getUserProfile: async (req, res) => {
      console.log(err);
    }
   },
-  deletePost: async (req, res) => {
+deletePost: async (req, res) => {
     try {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id }); //params from url
