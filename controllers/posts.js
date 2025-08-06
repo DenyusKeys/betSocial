@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment")
 const User = require("../models/User")
+const getBaseballGames = require("../public/js/getBaseballGames")
 module.exports = {
 getProfile: async (req, res) => {
     try {
@@ -44,7 +45,7 @@ getUserProfile: async (req, res) => {
   }
 },
 getFeed: async (req, res) => {
-    try {
+  try {
       //Populate will cross reference createdBy to the user schema along with other properties specified.
       const posts = await Post.find().populate('createdBy', 'userName wins losses').sort({ createdAt: "desc" }).lean(); //lean removes extra unneeded data. FASTER!
       posts.forEach(post => {
@@ -57,6 +58,11 @@ getFeed: async (req, res) => {
         hour12: true        // 12-hour format with AM/PM
       });
       });
+      //Grab mlb schedule for today from public/getBaseballGames
+      const games = await getBaseballGames();
+      for(let i = 0; i < games.events.length; i++){
+        console.log(games.events[i].name);
+      }
       res.render("feedCurrent.ejs", { posts: posts, user:req.user });
     } catch (err) {
       console.log(err);

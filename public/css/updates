@@ -75,8 +75,19 @@ Team dropdowns completed.
 - Created a showTeams() function in public.js
 - Function will grab the value from the sport dropdown and populate teams based on that.
 
+COMPLETED::
+- Displaying number of cards by screen size. 3, 2, or 1 at breakpoints 1300px and 1024px
+- Sidebar filter functionality works to filter by sport the bet was made by.
+
 UP NEXT::
 - Make sure the team dropdowns are added to the createdBet**** before saving to DB.
-- Work on finding an API to stream the daily games available?
+- Add a drowdown for ML, PL, RL etc depending on sport chosen to make the bets more consistent.
+- Dropdown for -110 -120 etc for consistency too?
 - Could display the games based on the sport
-Find an API or list of teams for each sport to hardcode into the bet creation form?
+
+FOUND FOR MLB:: Find an API or list of teams for each sport to hardcode into the bet creation form?
+- Look for a way to get other sports as well.  Make one big fetch and save them each day?
+- https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=YYYYMMDD
+- Loading the games of the day with just their names in the getFeed() function.  
+   - Look at how to display them.  Maybe in the header?
+   - Check how to refresh the date to the next date
