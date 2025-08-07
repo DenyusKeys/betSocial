@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
     async function getBaseballGames() {
-      const url = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20250805";
+      const url = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20250807";
       try {
         const response = await fetch(url);
         if (!response.ok) {

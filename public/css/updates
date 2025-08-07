@@ -82,6 +82,7 @@ COMPLETED::
 UP NEXT::
 - Make sure the team dropdowns are added to the createdBet**** before saving to DB.
 - Add a drowdown for ML, PL, RL etc depending on sport chosen to make the bets more consistent.
+    - Decided to just add a placeholder for now.
 - Dropdown for -110 -120 etc for consistency too?
 - Could display the games based on the sport
 

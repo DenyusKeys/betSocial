@@ -20,20 +20,20 @@
                 <option value="Other">Other</option>
               </select>
               <!-- Display teams by sport selected (teamFilter.js) -->
-              <label for="team">Choose a team:</label>
-              <select name="team" id="team"></select>
+              <!-- <label for="team">Choose a team:</label>
+              <select name="team" id="team"></select> -->
               <div class="mb-3">
                   <label for="prediction" class="form-label">Prediction</label>
-                  <input type="text" class="form-control" id="prediction" name="prediction">
+                  <input type="text" class="form-control" id="prediction" name="prediction" placeholder="Example: (Team) (ML/RL/Prop) (Line -120)">
               </div>
               <div class="mb-3">
                 <label for="reasoning" class="form-label">Reasoning</label>
-                <textarea class="form-control" id="reasoning" name="reasoning"></textarea>
+                <textarea class="form-control" id="reasoning" name="reasoning" placeholder="Why do you like this bet?"></textarea>
               </div>
               <input type="checkbox" id="tracked" name="tracked" value="true">
               <label for="tracked"> Track this bet?</label><br>
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
+                <label for="imgUpload" class="form-label">Upload Bet Slip(optional)</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
