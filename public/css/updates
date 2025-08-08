@@ -79,7 +79,7 @@ COMPLETED::
 - Displaying number of cards by screen size. 3, 2, or 1 at breakpoints 1300px and 1024px
 - Sidebar filter functionality works to filter by sport the bet was made by.
 
-UP NEXT::
+NOT COMPLETED::
 - Make sure the team dropdowns are added to the createdBet**** before saving to DB.
 - Add a drowdown for ML, PL, RL etc depending on sport chosen to make the bets more consistent.
     - Decided to just add a placeholder for now.
@@ -92,3 +92,7 @@ FOUND FOR MLB:: Find an API or list of teams for each sport to hardcode into the
 - Loading the games of the day with just their names in the getFeed() function.  
    - Look at how to display them.  Maybe in the header?
    - Check how to refresh the date to the next date
+
+COMPLETED::
+- Only allow a user to like a post once.  If they already have, it will unlike it and remove them from the array in the DB.
+    - Used $push / $pull for the insert and removal of a user in the array on MONGODB.

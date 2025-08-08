@@ -162,18 +162,44 @@ createPost: async (req, res) => {
   },
 likePost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 }, //inc comes with mongoDB (increment)
-        }
-      );
-      console.log(req.params.id)
-      console.log("Likes +1");
+      //Grab post data
+      const post = await Post.findById(req.params.id);
+
+      //Check if user has already liked the post
+      const hasLiked = post.likedBy.includes(req.user.id);
+
+      if(hasLiked){
+        //Remove the like and -1 from likes total
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {likes: -1},
+          $pull:{ likedBy: req.user.id}
+        });
+      } else {
+        //Add like and user to array in DB
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {likes: 1},
+          $push:{ likedBy: req.user.id}
+        });
+      }
       res.redirect(`/post/${req.params.id}`);
-    } catch (err) {
-      console.log(err);
-    }
+      } catch (err) {
+        console.log(err);
+      }
+
+
+    //   await Post.findOneAndUpdate(
+    //     { _id: req.params.id }, //post id
+    //     {
+    //       $inc: { likes: 1 }, //inc comes with mongoDB (increment)
+    //       $push: {likedBy: req.user.id} //user id 
+    //     }
+    //   );
+    //   console.log(req.params.id)
+    //   console.log("Likes +1");
+    //   res.redirect(`/post/${req.params.id}`);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   },
 //Find the post by its ID -> get its createdBy field -> find the user -> increment wins by 1
 addWin: async (req, res) => {
