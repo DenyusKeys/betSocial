@@ -23,6 +23,14 @@ const UserSchema = new mongoose.Schema({
     type: Number, 
     required: true 
   },
+  profileImage: {
+    type: String,
+    require: false,
+  },
+  profileCloudinaryId: {
+    type: String,
+    require: false,
+  }
 });
 
 // Password hash middleware.

@@ -96,3 +96,8 @@ FOUND FOR MLB:: Find an API or list of teams for each sport to hardcode into the
 COMPLETED::
 - Only allow a user to like a post once.  If they already have, it will unlike it and remove them from the array in the DB.
     - Used $push / $pull for the insert and removal of a user in the array on MONGODB.
+
+WORKING ON:: 
+- Profile picture for users
+- Allowing the "following" of users
+    - Add an array to the user model to track the array of users they follow?
