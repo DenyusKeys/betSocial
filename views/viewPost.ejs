@@ -21,10 +21,12 @@
 
       <!-- Footer: Author Info -->
       <div class="card-footer d-flex justify-content-between align-items-center">
-        <div>
+        
+        <!-- Link to profile of author -->
+        <a href="/profile/<%= post.createdBy._id %>">
           <h4 class="author-name mb-0"><%= post.createdBy.userName %></h4>
           <h5 class="author-record mb-0">Record: <%= post.createdBy.wins %> - <%= post.createdBy.losses %></h5>
-        </div>
+        </a>
 
         <!-- Likes + Buttons -->
         <div class="d-flex align-items-center gap-3">
