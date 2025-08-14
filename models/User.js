@@ -30,7 +30,15 @@ const UserSchema = new mongoose.Schema({
   profileCloudinaryId: {
     type: String,
     require: false,
-  }
+  },
+  followers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }],
+  following: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }]
 });
 
 // Password hash middleware.

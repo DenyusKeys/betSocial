@@ -99,5 +99,15 @@ COMPLETED::
 
 WORKING ON:: 
 - Profile picture for users
+    - Add it after creation of user just to keep it easy by following the post image upload code.
 - Allowing the "following" of users
     - Add an array to the user model to track the array of users they follow?
+
+CURRENT PROJECT::
+- Add "following" of user
+    - Add follow button to user profile when visiting their link (Working)
+    - Update user model to include who they follow(followedUsers) (Working)
+    - Add route when the button is clicked (Working)
+    - Add controller functionality (Working)
+    - Make button turn from following to unfollow?
+    - Remake profiles to include new user schema.

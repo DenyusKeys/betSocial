@@ -4,6 +4,9 @@
       <div class="col-6">
           <div>
               <p><strong>User Name</strong>: <%= user.userName %></p>
+              <form action="/follow/<%= user._id %>" method="POST">
+                  <button type="submit" class="btn btn-primary">Follow</button>
+              </form>     
           </div>
       </div>
       <div class="col-6">

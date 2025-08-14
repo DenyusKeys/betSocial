@@ -45,6 +45,49 @@ getUserProfile: async (req, res) => {
     res.status(500).send("Error loading user profile");
   }
 },
+
+followUser: async( req, res) => {
+  try {
+    const targetUser = req.params.userId;  //User being followed
+    const currentUser = req.user._id; //Logged in user
+    const loggedInUser = await User.findById(currentUser);
+
+    //Check for following yourself
+    if (targetUser === currentUser.toString()) {
+      return res.status(400).json({ message: "You cannot follow yourself" });
+    }
+
+    //Check if you're following the user
+    const hasFollowed = loggedInUser.following.includes(targetUser);
+    if(hasFollowed){
+      //Remove user from your following list
+      await User.findByIdAndUpdate(currentUser, {
+      $pull: { following: targetUser }
+    });
+      //Remove follower from targetUser list
+      await User.findByIdAndUpdate(targetUser, {
+      $pull: { followers: currentUser }
+    })
+    } else {
+    //Add user to your following list
+    await User.findByIdAndUpdate(currentUser, {
+      $push: { following: targetUser }
+    });
+    //Add follower to targetUser list
+    await User.findByIdAndUpdate(targetUser, {
+      $push: { followers: currentUser }
+    })
+    }
+
+    //Refresh to user profile page
+    res.redirect(`/profile/${targetUser}`);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error following user");
+  }
+},
+
 getFeed: async (req, res) => {
   try {
       //Populate will cross reference createdBy to the user schema along with other properties specified.
