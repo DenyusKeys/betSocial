@@ -1,6 +1,6 @@
 # Install
 
-`npm install`
+`npm install bootstrap cors dotenv ejs express jquery method method-override mongodb mongoose nodemon`
 
 ---
 
